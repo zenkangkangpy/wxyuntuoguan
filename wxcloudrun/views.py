@@ -8,8 +8,8 @@ from run import app
 
 @app.route('/')
 def index():
-    # return render_template('index.html')
-    return 'alpine+flask测试'
+    return render_template('index.html')
+    # return 'alpine+flask测试'
 
 
 # @app.route('/api/count', methods=['POST'])
