@@ -267,6 +267,45 @@
     </div>
   </div>
 </body>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+<script src="http://res2.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+<!-- 下面的代码放在引入微信 JS 库的代码之后 -->
+<!-- 把从渲染模板时传递进来的 wechat_info 里的信息填到相应的位置 -->
+<script>
+  // 调用 wx.config 传递等信息
+  wx.config({
+    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+    appId: wxb25459569f4804e0, // 必填，公众号的唯一标识
+    timestamp: 0, // 必填，生成签名的时间戳
+    nonceStr: 'nonceStr', // 必填，生成签名的随机串
+    signature: 'signature',// 必填，签名
+    jsApiList: [  // 下面填入分享接口名称
+      'updateAppMessageShareData', // 自定义“分享给朋友”及“分享到QQ”按钮的分享内容
+      'updateTimelineShareData', // 自定义“分享到朋友圈”及“分享到QQ空间”按钮的分享内容
+      'hideMenuItems'
+    ] // 必填，需要使用的JS接口列表
+  });
+
+  // 调用 wx.ready 实现分享信息的设置
+  wx.ready(function () {   //需在用户可能点击分享按钮前就先调用
+    wx.updateAppMessageShareData({ 
+      title: '贞土・ CSA・掌心农场（Beta）', // 分享标题
+      desc: '24小时直播农场；实时环境数据；全职农场管家；原生无污染农业', // 分享描述
+      link: 'https://flask-9bis-13254-5-1251902614.sh.run.tcloudbase.com', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+      imgUrl: '', // 分享图标
+      success: function () {
+        // 设置成功
+      }
+    });
+
+    wx.hideMenuItems({
+      menuList: ['menuItem:favorite','menuItem:share:timeline','menuItem:originPage','menuItem:openWithQQBrowser','menuItem:openWithSafari'] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3 
+  })//'menuItem:copyUrl',
+
+  });
+</script>
+
+
 <script src="https://mat1.gtimg.com/www/asset/lib/jquery/jquery/jquery-1.11.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
